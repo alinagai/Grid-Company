@@ -1,0 +1,33 @@
+@model IEnumerable<GridCom.Models.CasesOfOutage>
+
+@{
+    ViewData["Title"] = "Причины отключения";
+}
+
+<h1>Список причин отключения</h1>
+
+<p>
+    <a asp-action="Create">Создать</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Причина отключения</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+               @Html.DisplayFor(modelItem => item.Case_outage)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CasesOfOutageID">Изменить</a> |
+                <a asp-action="Details" asp-route-id="@item.CasesOfOutageID">Детали</a> |
+                <a asp-action="Delete" asp-route-id="@item.CasesOfOutageID">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

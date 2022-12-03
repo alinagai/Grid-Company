@@ -1,0 +1,100 @@
+@model PaginatedList<GridCom.Models.Outage>
+
+@{ ViewData["Title"] = "Отключение"; }
+
+<h1>Сводная таблица аварийных отключений</h1>
+
+<p>
+    <a asp-action="Create">Создать</a>
+</p>
+
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Поиск по РЭС: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Найти" class="btn btn-default" /> |
+            <a asp-action="Index">Назад</a>
+        </p>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                РЭС
+            </th>
+            <th> Подстанция</th>
+            <th>Номер фидера </th>
+            <th>Протяженность фидера </th>
+            <th>  Дата отключения</th>
+            <th>Время простоя</th>
+            <th> Недоотпуск</th>
+            <th> АПВ успешное </th>
+            <th>РПВ успешное</th>
+            <th> ОЗЗ</th>
+            <th>Причина отключения </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RES.Name_RES).
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Substation.Name_PS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Feeder.Num_feeder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Feeder.Extent_feeder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_outage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Downtime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnderSupply)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.APV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RPV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OZZ)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CasesOfOutage.Case_outage)
+            </td>
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.OutageID">Изменить</a> |
+                <a asp-action="Details" asp-route-id="@item.OutageID">Детали</a> |
+                <a asp-action="Delete" asp-route-id="@item.OutageID">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@{ var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                var nextDisabled = !Model.HasNextPage ? "disabled" : ""; }
+<a asp-action="Index"
+  
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Предыдущая
+</a>
+<a asp-action="Index"
+  
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Следующая
+</a>

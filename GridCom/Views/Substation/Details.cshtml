@@ -1,0 +1,30 @@
+@model GridCom.Models.Substation
+
+@{
+    ViewData["Title"] = "Детали";
+}
+
+<h1>Информация</h1>
+
+<div>
+    <h4>Подстанции</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+           Название 
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name_PS)
+        </dd>
+        <dt class = "col-sm-2">
+           РЭС
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RES.Name_RES)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.SubstationID">Изменить</a> |
+    <a asp-action="Index">Назад</a>
+</div>

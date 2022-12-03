@@ -1,0 +1,39 @@
+@model GridCom.Models.Substation
+
+@{ ViewData["Title"] = "Изменение"; }
+
+<h1>Изменение</h1>
+
+<h4>Подстанции</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SubstationID" />
+            <div class="form-group">
+                <label asp-for="Name_PS" class="control-label">Название подстанции</label>
+                <input asp-for="Name_PS" class="form-control" />
+                <span asp-validation-for="Name_PS" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RES" class="control-label">РЭС</label>
+                <select asp-for="RESID" class="form-control" asp-items="ViewBag.RESID">
+                    <option value="">-- Выбор РЭС --</option>
+                </select>
+                <span asp-validation-for="RESID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Назад</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

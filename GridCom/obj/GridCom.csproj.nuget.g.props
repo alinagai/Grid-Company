@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
+    <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
+    <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
+    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">/Users/alina/.nuget/packages/</NuGetPackageRoot>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">/Users/alina/.nuget/packages/</NuGetPackageFolders>
+    <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
+    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">5.9.0</NuGetToolVersion>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <SourceRoot Include="/Users/alina/.nuget/packages/" />
+  </ItemGroup>
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+  </PropertyGroup>
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore.design/5.0.5/build/netcoreapp3.0/Microsoft.EntityFrameworkCore.Design.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore.design/5.0.5/build/netcoreapp3.0/Microsoft.EntityFrameworkCore.Design.props')" />
+  </ImportGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgWebGrease Condition=" '$(PkgWebGrease)' == '' ">/Users/alina/.nuget/packages/webgrease/1.1.0</PkgWebGrease>
+    <PkgjQuery Condition=" '$(PkgjQuery)' == '' ">/Users/alina/.nuget/packages/jquery/3.5.1</PkgjQuery>
+    <PkgSystem_Data_SQLite_Core Condition=" '$(PkgSystem_Data_SQLite_Core)' == '' ">/Users/alina/.nuget/packages/system.data.sqlite.core/1.0.91</PkgSystem_Data_SQLite_Core>
+    <PkgFontAwesome Condition=" '$(PkgFontAwesome)' == '' ">/Users/alina/.nuget/packages/fontawesome/4.0.3.1</PkgFontAwesome>
+    <PkgMicrosoft_CodeAnalysis_Analyzers Condition=" '$(PkgMicrosoft_CodeAnalysis_Analyzers)' == '' ">/Users/alina/.nuget/packages/microsoft.codeanalysis.analyzers/3.0.0</PkgMicrosoft_CodeAnalysis_Analyzers>
+    <PkgMicrosoft_EntityFrameworkCore_Tools Condition=" '$(PkgMicrosoft_EntityFrameworkCore_Tools)' == '' ">/Users/alina/.nuget/packages/microsoft.entityframeworkcore.tools/5.0.4</PkgMicrosoft_EntityFrameworkCore_Tools>
+    <PkgjQuery1 Condition=" '$(PkgjQuery1)' == '' ">/Users/alina/.nuget/packages/jquery1/1.12.4</PkgjQuery1>
+    <PkgDynamicHtml Condition=" '$(PkgDynamicHtml)' == '' ">/Users/alina/.nuget/packages/dynamichtml/1.0.3</PkgDynamicHtml>
+    <PkgDurandal_Authentication Condition=" '$(PkgDurandal_Authentication)' == '' ">/Users/alina/.nuget/packages/durandal.authentication/2.0.0</PkgDurandal_Authentication>
+    <PkgChartJS Condition=" '$(PkgChartJS)' == '' ">/Users/alina/.nuget/packages/chartjs/20.2.7</PkgChartJS>
+  </PropertyGroup>
+</Project>

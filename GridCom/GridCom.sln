@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.808.7
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridCom", "GridCom.csproj", "{F333A085-F491-4F6A-AE63-3D902A6648F4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F333A085-F491-4F6A-AE63-3D902A6648F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F333A085-F491-4F6A-AE63-3D902A6648F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F333A085-F491-4F6A-AE63-3D902A6648F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F333A085-F491-4F6A-AE63-3D902A6648F4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DED6BF5D-419D-4A20-B27D-4E86D76FFC71}
+	EndGlobalSection
+EndGlobal

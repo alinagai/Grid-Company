@@ -1,0 +1,79 @@
+@model GridCom.Models.Outage
+
+@{ ViewData["Title"] = "Удаление"; }
+
+
+<h3>Вы уверены, что хотите удалить запись?</h3>
+<div>
+    <h4>Сводная таблица аварийных отключений</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            РЭС
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RES.RESID)
+        </dd>
+        <dt class="col-sm-2">
+           Подстанция
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Substation.SubstationID)
+        </dd>
+        <dt class="col-sm-2">
+           Номер фидера
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Feeder.FeederID)
+        </dd>
+        <dt class="col-sm-2">
+            Дата отключения
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Date_outage)
+        </dd>
+        <dt class="col-sm-2">
+          Время простоя
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Downtime)
+        </dd>
+        <dt class="col-sm-2">
+            Недоотпуск
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UnderSupply)
+        </dd>
+        <dt class="col-sm-2">
+            АПВ успешное
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.APV)
+        </dd>
+        <dt class="col-sm-2">
+            РПВ успешное
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RPV)
+        </dd>
+        <dt class="col-sm-2">
+           ОЗЗ
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OZZ)
+        </dd>
+        <dt class="col-sm-2">
+           Причина отключения
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CasesOfOutage.CasesOfOutageID)
+        </dd>
+
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="OutageID" />
+        <input type="submit" value="Удалить" class="btn btn-danger" /> |
+        <a asp-action="Index">Назад</a>
+    </form>
+</div>

@@ -1,0 +1,9 @@
+﻿@model GridCom.Models.Feeder
+<option value="">-- Выбор фидера --</option>
+@if (ViewBag.FeederList != null)
+{
+    foreach (var item in ViewBag.FeederList)
+    {
+        <option value=" @item.Value">@item.Text</option>
+    }
+}

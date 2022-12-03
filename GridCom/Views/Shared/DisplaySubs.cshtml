@@ -1,0 +1,9 @@
+﻿@model GridCom.Models.Substation
+<option value="">-- Выбор подстанции --</option>
+@if(ViewBag.SubList!=null)
+{
+    foreach (var item in ViewBag.SubList)
+    {
+        <option value=" @item.Value">@item.Text</option>
+    }
+}

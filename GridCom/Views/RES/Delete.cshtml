@@ -1,0 +1,39 @@
+@model GridCom.Models.RES
+
+@{
+    ViewData["Title"] = "Удаление";
+}
+
+
+
+<h3>Вы уверены, что хотите удалить запись?</h3>
+<div>
+    <h4>РЭС</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            РЭС
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name_RES)
+        </dd>
+        <dt class = "col-sm-2">
+            Полное название РЭС
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FullName_RES)
+        </dd>
+        <dt class = "col-sm-2">
+            Адрес
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Adress_RES)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="RESID" />
+        <input type="submit" value="Удалить" class="btn btn-danger" /> |
+        <a asp-action="Index">Назад</a>
+    </form>
+</div>

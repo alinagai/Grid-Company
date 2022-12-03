@@ -1,0 +1,147 @@
+﻿@model IEnumerable<GridCom.Models.Outage>
+
+@{ ViewData["Title"] = "Недоотпуск помесячно Буэс"; }
+
+<h1>Недоотпуск помесячно Буэс</h1>
+@*<canvas id="myChart" width="400" height="400"></canvas>*@
+<br>
+<h3>За период:</h3>
+<br>
+
+<form method="post">
+    С: <input type="date" name="startdate" />
+    По: <input type="date" name="enddate" />
+    <input type="submit" value="Выбрать" class="btn btn-primary" />
+    <br>
+    <br>
+    <table class="table" id="headerTable">
+        <thead>
+            <tr>
+                <th> РЭС </th>
+                <th>  Дата отключения</th>
+                <th>  Сумма недоотпуска</th>
+
+            </tr>
+        </thead>
+        <tbody id="tbodyId">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RES.Name_RES)
+                    </td>
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date_outage)
+                    </td>
+
+                    <td>
+                        @Model.Where(m => m.RESID == item.RESID).Sum(x => x.UnderSupply)
+
+                        @* @Model.Sum(item.UnderSupply).Where(x => x.RESID == item.RESID)*@
+                        @* @Html.TextBox("syscount", (string)ViewBag.Counts)*@
+                        @* @Html.TextBox("syscount", (string)ViewBag.Countt)
+                            @Html.DisplayFor(modelItem => item.UnderSupply)*@
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+
+    <br>
+
+    @*<a asp-area="" asp-controller="KolOtklPofiderno" asp-action="ExportToExcel">Export Excel</a>*@
+
+    <div>
+        <input type="submit" class="btn btn-primary" value="Экспорт в Эксель" onclick="fnExcelReport();" />
+    </div>
+    <br>
+    <div style="width:100%" id="printButton">
+        Построить график &raquo;
+    </div>
+    <canvas id="myChart"></canvas>
+</form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.js"></script>
+<script>const dataLabelsRemove = [];
+    const dataElements = [];
+    const data1 = document.querySelectorAll('tbody tr');
+    Array.from(data1).forEach(item => {
+        if (!dataLabelsRemove.includes(item.querySelector('td:first-child').innerHTML.trim())) {
+            dataLabelsRemove.push(item.querySelector('td:first-child').innerHTML.trim());
+            dataElements.push(item.querySelectorAll('td'));
+        }
+    });
+    console.log(dataElements);
+    document.getElementById('tbodyId').innerHTML = '';
+    dataElements.forEach(item => {
+        const id = 'id' + Math.floor(Math.random() * 1000);
+        document.getElementById('tbodyId').insertAdjacentHTML('beforeend', `<tr id=${id}></tr>`);
+        item.forEach(item => {
+            document.getElementById('tbodyId').querySelector(`#${id}`).appendChild(item);
+        })
+    });
+    document.getElementById('printButton').addEventListener('click', () => {
+        const dataLabels = [];
+        const dataValues = [];
+        const data2 = document.querySelectorAll('tbody tr');
+        Array.from(data2).forEach(item => {
+            dataLabels.push(item.querySelector('td:first-child').innerHTML.trim());
+            dataValues.push(item.querySelector('td:last-child').innerHTML.trim());
+        });
+        console.log(dataLabels);
+        console.log(dataValues);
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data:
+            {
+                labels: dataLabels,
+                datasets: [{
+                    label: "Недоотпуск помесячно БуЭС",
+                    backgroundColor: 'rgb(0,145,215)',
+                    borderColor: 'rgb(0,145,215)',
+
+                    data: dataValues,
+                }]
+            },
+            options: {}
+        });
+    })</script>
+@section scripts{
+    <script>function fnExcelReport() {
+            var tab_text = "<table border='2px'><tr bgcolor='#87AFC6'>";
+            var textRange; var j = 0;
+            tab = document.getElementById('headerTable'); // id of table
+
+            for (j = 0; j < tab.rows.length; j++) {
+                tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
+            }
+
+            tab_text = tab_text + "</table>";
+
+            var ua = window.navigator.userAgent;
+            var msie = ua.indexOf("MSIE ");//проверка, использует ли пользователь IE
+
+            if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+            {
+
+                txtArea1.document.open("xlsx", "replace");
+                txtArea1.document.write(tab_text);
+                txtArea1.document.close();
+                txtArea1.focus();
+                sa = txtArea1.document.execCommand("SaveAs", true, "Say Thanks to Sumit.xlsx");
+            }
+            else                 //other browser not tested on IE 11
+
+
+                sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+
+            return (sa);
+        }</script>
+
+
+}

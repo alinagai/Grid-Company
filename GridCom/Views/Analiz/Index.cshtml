@@ -1,0 +1,75 @@
+﻿@model PaginatedList<GridCom.Models.Outage>
+
+@{ ViewData["Title"] = "Время простоя пофидерно БуЭС"; }
+
+<h1>Время простоя пофидерно БуЭС</h1>
+<br>
+<h3>За период:</h3>
+<br>
+<form method="post">
+    С: <input type="date" name="startdate" />
+    По: <input type="date" name="enddate" />
+    <input type="submit" value="Выбрать" class="btn btn-primary" />
+    <br>
+    <br>
+   
+    <table class="table" id="dataTable">
+        <thead>
+            <tr>
+                <th> РЭС </th>
+                <th> Подстанция</th>
+                <th>Номер фидера </th>
+                <th>Протяженность фидера </th>
+                <th>  Дата отключения</th>
+                <th>Время простоя</th>
+                <th>ПС+фидер </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RES.Name_RES).
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Substation.Name_PS)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Feeder.Num_feeder)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Feeder.Extent_feeder)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date_outage)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Downtime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Substation.Name_PS) – @Html.DisplayFor(modelItem => item.Feeder.Num_feeder)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a href="@Url.Action("ExportToExcel","Analiz")">Export Excel</a>
+</form>
+@{ var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : ""; }
+
+<a asp-action="Index"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Предыдущая
+</a>
+<a asp-action="Index"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Следующая
+</a>

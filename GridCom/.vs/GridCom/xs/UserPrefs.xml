@@ -1,0 +1,39 @@
+﻿<Properties StartupConfiguration="{F333A085-F491-4F6A-AE63-3D902A6648F4}|Default">
+  <MonoDevelop.Ide.ItemProperties.GridCom PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Views/Outage/Create.cshtml">
+    <Files>
+      <File FileName="Views/Outage/Index.cshtml" Line="80" Column="64" />
+      <File FileName="Controllers/OutageController.cs" Line="54" Column="12" />
+      <File FileName="Models/Outage.cs" Line="18" Column="77" />
+      <File FileName="Views/Outage/Create.cshtml" Line="38" Column="66" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="GridCom" expanded="True">
+            <Node name="GridCom" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Case" expanded="True" />
+                <Node name="Feeder" expanded="True" />
+                <Node name="Outage" expanded="True">
+                  <Node name="Create.cshtml" selected="True" />
+                </Node>
+                <Node name="Substation" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

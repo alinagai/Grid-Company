@@ -1,0 +1,49 @@
+@model IEnumerable<GridCom.Models.Feeder>
+
+@{
+    ViewData["Title"] = "Изменение";
+}
+
+<h1>Список фидеров</h1>
+
+<p>
+    <a asp-action="Create">Создать</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Подстанция
+            </th>
+            <th>
+                Номер фидера
+            </th>
+            <th>
+                Протяженность, км
+            </th>
+
+           
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Substations.Name_PS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Num_feeder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Extent_feeder)
+            </td>
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.FeederID">Изменить</a> |
+                <a asp-action="Details" asp-route-id="@item.FeederID">Детали</a> |
+                <a asp-action="Delete" asp-route-id="@item.FeederID">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

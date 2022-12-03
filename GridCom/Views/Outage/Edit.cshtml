@@ -1,0 +1,111 @@
+@model GridCom.Models.Outage
+
+@{ ViewData["Title"] = "Изменение"; }
+
+<h1>Изменение</h1>
+
+<h4>Сводная таблица аварийных отключений</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="OutageID" />
+            <div class="form-group">
+                @if (ViewBag.RESList != null)
+                {
+    @Html.DropDownListFor(m => m.RESID, ViewBag.RESList as SelectList, "-- Выбор РЭС --", new { @class = "form-control" })}
+            </div>
+            <div class="form-group">
+
+                @Html.DropDownListFor(m => m.SubstationID, new SelectList(""), "-- Выбор подстанции --", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.DropDownListFor(m => m.FeederID, new SelectList(""), "-- Выбор фидера --", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label asp-for="Date_outage" class="control-label">Дата отключения</label>
+                <input asp-for="Date_outage" class="form-control" />
+                <span asp-validation-for="Date_outage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Downtime" class="control-label">Время простоя (часы:минуты:секунды)</label>
+                <input asp-for="Downtime" class="form-control" />
+                <span asp-validation-for="Downtime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnderSupply" class="control-label">Недоотпуск</label>
+                <input asp-for="UnderSupply" class="form-control" />
+                <span asp-validation-for="UnderSupply" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CasesOfOutage" class="control-label">Причина отключения</label>
+                <select asp-for="CasesOfOutageID" class="form-control" asp-items="ViewBag.CasesOfOutageID">
+                    <option value="">-- Выбор причины --</option>
+                </select>
+                <span asp-validation-for="CasesOfOutageID" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="APV" /> АПВ успешное
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="RPV" /> РПВ успешное
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="OZZ" /> ОЗЗ
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Назад</a>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>$(document).ready(function () {
+        $("#RESID").change(function () {
+            var resID = $(this).val();
+            debugger
+            $.ajax({
+                type: "post",
+                url: "/Outage/GetSubstationList?RESID=" + resID,
+                contetntType: "html",
+                success: function (response) {
+                    debugger
+                    $("#SubstationID").empty();
+                    $("#SubstationID").append(response);
+
+                }
+            })
+        })
+
+        $("#SubstationID").change(function () {
+            var subID = $(this).val();
+            debugger
+            $.ajax({
+                type: "post",
+                url: "/Outage/GetFeederList?SubstationID=" + subID,
+                contetntType: "html",
+                success: function (response) {
+                    debugger
+                    $("#FeederID").empty();
+                    $("#FeederID").append(response);
+
+                }
+            })
+        })
+    })</script>

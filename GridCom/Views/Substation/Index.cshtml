@@ -1,0 +1,41 @@
+@model IEnumerable<GridCom.Models.Substation>
+
+@{
+    ViewData["Title"] = "Подстанции";
+}
+
+<h1>Список подстанций</h1>
+
+<p>
+    <a asp-action="Create">Создать</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Название подстанции
+            </th>
+            <th>
+                РЭС
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name_PS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RES.Name_RES)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SubstationID">Изменить</a> |
+                <a asp-action="Details" asp-route-id="@item.SubstationID">Детали</a> |
+                <a asp-action="Delete" asp-route-id="@item.SubstationID">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
