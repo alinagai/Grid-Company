@@ -14,6 +14,6 @@ namespace GridCom.Models
         public RES RES { get; set; }
         public ICollection<Feeder> Feeders { get; set; }
         public ICollection<Outage> Outages { get; set; }
-       
+      
     }
 }

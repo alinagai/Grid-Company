@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,6 +27,8 @@
     <PackageReference Include="ChartJS" Version="20.2.7" />
     <PackageReference Include="Chart.Mvc" Version="1.0.0.2" />
     <PackageReference Include="DynamicHtml" Version="1.0.3" />
+    <PackageReference Include="Microsoft.ML" Version="2.0.1" />
+    <PackageReference Include="Microsoft.ML.FastTree" Version="2.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
@@ -38,5 +40,18 @@
     <Folder Include="Views\NedootpuskPomes\" />
     <Folder Include="Views\CaseOtkl\" />
     <Folder Include="Views\AverageUndersupply\" />
+    <Folder Include="Views\Predict\" />
+    <Folder Include="MLModel\" />
+    <Folder Include="DataStructure\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Views\Predict\" />
+    <None Remove="MLModel\" />
+    <None Remove="DataStructure\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Views\Outage\Create.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>

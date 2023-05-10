@@ -1,0 +1,113 @@
+@model GridCom.DataStructure.OutageData
+
+@{ ViewData["Title"] = "Создание"; }
+
+<h1>Создать новую запись</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Predict">
+
+            <div class="form-group">
+                <label asp-for="Substation_Name" class="control-label">Название подстанции</label>
+                <select asp-for="Substation_Name">
+                    <option value="Апастово">Апастово</option>
+                    <option value="Бакырчи">Бакырчи</option>
+                    <option value="Буимнск">Буинск</option>
+                    <option value="Бишбатман">Бишбатман</option>
+                    <option value="Бурнашево">Бурнашево</option>
+                    <option value="Б.Акса">Б.Акса</option>
+                    <option value="Восход">Восход</option>
+                    <option value="Верхний Услон">Верхний Услон</option>
+                    <option value="Дрожжаное">Дрожжаное</option>
+                    <option value="Дружба">Дружба</option>
+                    <option value="Западная">Западная</option>
+                    <option value="Исаково">Исаково</option>
+                    <option value="Кайбицы">Кайбицы</option>
+                    <option value="Каратун">Каратун</option>
+                    <option value="Караталга">Караталга</option>
+                    <option value="Ключи">Ключи</option>
+                    <option value="Киять">Киять</option>
+                    <option value="Куралово">Куралово</option>
+                    <option value="Красновидово">Красновидово</option>
+                    <option value="Ключищи">Ключищи</option>
+                    <option value="К.Устье">К.Устье</option>
+                    <option value="Майдан">Майдан</option>
+                    <option value="М.Цильна БРЭС">М.Цильна БРЭС</option>
+                    <option value="М.Цильна ДРЭС">М.Цильна ДРЭС</option>
+                    <option value="Макулово">Макулово</option>
+                    <option value="Матюшино">Матюшино</option>
+                    <option value="Нурлаты">Нурлаты</option>
+                    <option value="Н.Услон">Н.Услон</option>
+                    <option value="Подберезье">Подберезье</option>
+                    <option value="Печищи">Печищи</option>
+                    <option value="Раково">Раково</option>
+                    <option value="Рассвет">Рассвет</option>
+                    <option value="Рудник">Рудник</option>
+                    <option value="Савино">Савино</option>
+                    <option value="Свияжск">Свияжск</option>
+                    <option value="Тарханы">Тарханы</option>
+                    <option value="Тетюши">Тетюши</option>
+                    <option value="Федоровская">Федоровская</option>
+                    <option value="Чечкабы">Чечкабы</option>
+                    <option value="Чинчурино">Чинчурино</option>
+                    <option value="Энтуганы">Энтуганы</option>
+                    <option value="Ямбухтино">Ямбухтино</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date_Outage" class="control-label">Месяц отключения</label>
+                <select asp-for="Date_Outage" class="form-control">
+                    <option value="январь">январь</option>
+                    <option value="февраль">февраль</option>
+                    <option value="март">март</option>
+                    <option value="апрель">апрель</option>
+                    <option value="май">май</option>
+                    <option value="июнь">июнь</option>
+                    <option value="июль">июль</option>
+                    <option value="авгутс">август</option>
+                    <option value="сентябрь">сентябрь</option>
+                    <option value="октябрь">октябрь</option>
+                    <option value="ноябрь">ноябрь</option>
+                    <option value="декабрь">декабрь</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Temperature" class="control-label">Температура</label>
+                <input asp-for="Temperature" class="form-control" />
+                <span asp-validation-for="Temperature" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Wind_speed" class="control-label">Скорость ветра</label>
+                <input asp-for="Wind_speed" class="form-control" />
+                <span asp-validation-for="Wind_speed" class="text-danger"></span>
+            </div>
+
+            <div class="form-group form-check">
+                <input type="hidden" name="Snow" value="0">
+                <input type="checkbox" name="Snow" value="1" id="Snow" class="form-check-input">
+                <label for="Snow">Снег</label>
+            </div>
+            <div class="form-group form-check">
+                <input type="hidden" name="Rain" value="0">
+                <input type="checkbox" name="Rain" value="1" id="Rain" class="form-check-input">
+                <label for="Rain">Дождь</label>
+            </div>
+            <div class="form-group form-check">
+                <input type="hidden" name="Thunder" value="0">
+                <input type="checkbox" name="Thunder" value="1" id="Thunder" class="form-check-input">
+                <label for="Thunder">Гроза</label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Predict" class="btn btn-primary" />
+            </div>
+
+            <p>Прогноз: @ViewData["Prediction"]</p>
+
+        </form>
+
+    </div>
+</div>
+
